@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\homecontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -25,6 +26,9 @@ Route::get('/post/edit/{id}', [PostController::class, 'edit'])->middleware(['aut
 Route::put('/post/edit/{id}', [PostController::class, 'update'])->middleware(['auth'])->name('post_update');
 Route::get('/post/delete/{id}', [PostController::class, 'destroy'])->middleware(['auth'])->name('post_destroy');
 
+// Route::get('/home', [homecontroller::class, 'view'])->name('post_search');
+
+//Route::get('/home', [homecontroller::class, 'search'])->name('web.search');
 
 Route::get('/dashboard', [Dashboard::class, 'show_post'])->middleware(['auth'])->name('dashboard');
 

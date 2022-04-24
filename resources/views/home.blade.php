@@ -45,11 +45,14 @@
                     </svg>
                 </div>
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                <form action="{{ route('web.search') }}" method="GET">
+                    <div class="form-group">
+                        <input type="text" name="search" id="" class="form-control" style="height:40px; width:700px" placeholder="Search by name or category">
                     </div>
-                </div>
+                    <button style="height:40px; width:60%;">
+                        Search
+                    </button>
+                </form>
             </div>
         </div>
     </body>

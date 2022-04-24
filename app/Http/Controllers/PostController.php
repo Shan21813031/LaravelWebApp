@@ -35,13 +35,13 @@ class PostController extends Controller
             $file = $request->file('postImage');
             $extension = $file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
-            $file->move('uploads/posts');
+            $file->move('uploads/posts/', $filename);
             $post->postImage = $filename;
         }
         $post->categories = $request->categories;
         $user->post()->save($post);
 
-        return redirect(route('post_index'));
+        return redirect(route('post_index'))->with('status', 'Advert created!');
 
 
 

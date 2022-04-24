@@ -3,6 +3,10 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
+        @if (session()->has('status')){
+          {{ session('status') }}
+        }
+        @endif
     </x-slot>
 
     <div class="py-2">
@@ -48,10 +52,10 @@
                         {{ $post->hyperlink }}
                     </td>
                     <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">>
-                        <a href= "" class="btn btn-primary btn-sm">Edit</a>
+                        <a href= "{{url('/post/edit', $post->id)}}" class="btn btn-primary btn-sm">Edit</a>
                     </td>
                     <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">>
-                        <a href= "" class="btn btn-red">Delete</a>
+                        <a href= "{{url('/post/delete', $post->id)}}" class="btn btn-red">Delete</a>
                     </td>
                   </tr>
                   @endforeach

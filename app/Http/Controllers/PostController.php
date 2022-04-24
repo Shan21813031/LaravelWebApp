@@ -49,28 +49,6 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -78,7 +56,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('editpost', ['post'=>$post]);
     }
 
     /**
@@ -90,7 +69,22 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->hyperlink = $request->hyperlink;
+        if($request->hasFile('postImage')){
+
+            $file = $request->file('postImage');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/posts/', $filename);
+            $post->postImage = $filename;
+        }
+        $post->categories = $request->categories;
+        $post->save();
+
+        return redirect(route('dashboard'))->with('status', 'Advert updated!');
+
     }
 
     /**
@@ -101,6 +95,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+        return redirect(route('dashboard'))->with('status', 'Advert deleted!');
     }
 }

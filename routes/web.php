@@ -16,7 +16,7 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/post', [PostController::class, 'index'])->middleware(['auth'])->name('post_index');

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\homecontroller;
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 use App\Http\Controllers\PostController;
 
 /*
@@ -17,8 +18,16 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+
+    $posts = Post::latest();
+    if (request('search')){
+        $posts->where('title', 'like', '%' . request('search') . '%');
+    }
+
+    return view('home', [
+    'posts' => $posts->get()]);
+    
+})->name('home');
 
 Route::get('/post', [PostController::class, 'index'])->middleware(['auth'])->name('post_index');
 Route::post('/post', [PostController::class, 'create'])->middleware(['auth'])->name('post_create');
@@ -28,7 +37,7 @@ Route::get('/post/delete/{id}', [PostController::class, 'destroy'])->middleware(
 
 // Route::get('/home', [homecontroller::class, 'view'])->name('post_search');
 
-//Route::get('/home', [homecontroller::class, 'search'])->name('web.search');
+// Route::get('/home', [homecontroller::class, 'search'])->name('web.search');
 
 Route::get('/dashboard', [Dashboard::class, 'show_post'])->middleware(['auth'])->name('dashboard');
 

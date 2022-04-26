@@ -45,7 +45,7 @@
                     </svg>
                 </div>
 
-                <form action="{{ route('web.search') }}" method="GET">
+                <form action="#" method="GET">
                     <div class="form-group">
                         <input type="text" name="search" id="" class="form-control" style="height:40px; width:700px" placeholder="Search by name or category">
                     </div>
@@ -54,6 +54,54 @@
                     </button>
                 </form>
             </div>
+
+            <table class="min-w-full text-center" >
+                <thead class="border-b bg-gray-800 boder-gray-900">
+                  <tr>
+                    <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                      Product Name
+                    </th>
+                    <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                      Image(s)
+                    </th>
+                    <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                      Categories
+                    </th>
+                    <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                      URL
+                    </th>
+                    <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                      
+                    </th>
+                    <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                      Actions  
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($posts as $post)
+                  <tr class="border-b bg-gray-800 boder-gray-900">
+                    <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                        {{ $post->title }}
+                    </td>
+                    <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                        <img src="{{  asset('uploads/posts/').'/' . $post->postImage }}" width= "100px" height="100px" alt="image">
+                    </td>
+                    <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                        {{ $post->categories }}
+                    </td>
+                    <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                        {{ $post->hyperlink }}
+                    </td>
+                    <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">>
+                        <a href= "{{url('/post/edit', $post->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                    </td>
+                    <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">>
+                        <a href= "{{url('/post/delete', $post->id)}}" class="btn btn-red">Delete</a>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
         </div>
     </body>
 </html>

@@ -70,12 +70,12 @@
                     <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
                       URL
                     </th>
-                    <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
+                    {{-- <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
                       
                     </th>
                     <th scope="col" class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
                       Actions  
-                    </th>
+                    </th> --}}
                   </tr>
                 </thead>
                 <tbody>
@@ -93,12 +93,12 @@
                     <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">
                         {{ $post->hyperlink }}
                     </td>
-                    <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">>
+                    {{-- <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">>
                         <a href= "{{url('/post/edit', $post->id)}}" class="btn btn-primary btn-sm">Edit</a>
                     </td>
                     <td class="text-sm text-white font-medium px-6 py-4 whitespace-nowrap">>
                         <a href= "{{url('/post/delete', $post->id)}}" class="btn btn-red">Delete</a>
-                    </td>
+                    </td> --}}
                   </tr>
                   @endforeach
                 </tbody>
